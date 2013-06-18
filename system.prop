@@ -25,7 +25,8 @@ persist.sys.ui.hw=true
 ro.media.dec.jpeg.memcap=8000000
 ro.media.enc.jpeg.quality=100
 
-# RIL
+#RIL
+ro.telephony.ril_class=HTCGenericRIL
 rild.libpath=/system/lib/libhtc_ril.so
 rild.libargs=-e wwan0
 ro.telephony.ril.v3=signalstrength,skipbrokendatacall

@@ -30,7 +30,7 @@ on fs
     chmod 0660 /rfs
     setprop ro.crypto.fuse_sdcard true
     setprop ro.crypto.umount_sd false
-	
+    
 on post-fs-data
     # We will remap this as /storage/sdcard0 with the sdcard fuse tool
     mkdir /data/media 0770 media_rw media_rw
@@ -86,9 +86,9 @@ on boot
     chmod 0666 /proc/net/xt_qtaguid/ctrl
 
 # Wifi: Disable the IPv6 of p2p0 interface
-	write /proc/sys/net/ipv6/conf/p2p0/disable_ipv6 1
-	
-	chown system system /sys/class/android_usb/android0/f_rndis/ethaddr
+    write /proc/sys/net/ipv6/conf/p2p0/disable_ipv6 1
+    
+    chown system system /sys/class/android_usb/android0/f_rndis/ethaddr
     chmod 0660 /sys/class/android_usb/android0/f_rndis/ethaddr
 
 # Load modules while booting 
@@ -154,18 +154,18 @@ on boot
     chown system system /sys/class/leds/green/blink
     chown system system /sys/class/leds/amber/brightness
     chown system system /sys/class/leds/amber/blink
-	chown system system /sys/class/leds/button-backlight/slow_blink
+    chown system system /sys/class/leds/button-backlight/slow_blink
 
 #S2W
-	chown system system /sys/android_touch/sweep2wake
-	chown system system /sys/android_touch/s2w_min_distance
-	chown system system /sys/android_touch/s2w_allow_stroke
+    chown system system /sys/android_touch/sweep2wake
+    chown system system /sys/android_touch/s2w_min_distance
+    chown system system /sys/android_touch/s2w_allow_stroke
     chown system system /sys/android_touch/s2w_register_threshold
-	chown system system /sys/android_touch/s2w_allow_double_tap
+    chown system system /sys/android_touch/s2w_allow_double_tap
     chown system system /sys/android_touch/s2w_double_tap_duration
     chown system system /sys/android_touch/s2w_double_tap_threshold
     chown system system /sys/android_touch/s2w_double_tap_barrier_y
-		
+        
 # didim
     chown system system /sys/class/graphics/fb0/device/smartdimmer/enable
     chown system system /sys/class/graphics/fb0/device/smartdimmer/aggressiveness
@@ -208,7 +208,7 @@ on boot
     write /proc/sys/net/ipv6/conf/rmnet2/accept_ra 2
 
     write /sys/module/cpu_tegra3/parameters/auto_hotplug 1
-	write /sys/kernel/debug/tegra_hotplug/max_cpus 4
+    write /sys/kernel/debug/tegra_hotplug/max_cpus 4
     write /sys/module/cpu_tegra3/parameters/no_lp 0
     #write /sys/module/tegra3_emc/parameters/emc_enable 0
     write /sys/module/cpuidle/parameters/lp2_in_idle 1
@@ -224,7 +224,7 @@ on boot
     write /sys/block/mmcblk0/queue/read_ahead_kb 1024
     write /sys/block/mmcblk0/bdi/read_ahead_kb 1024
     
-    # Flash storage isn't a good entropy source, and only causes locking	
+    # Flash storage isn't a good entropy source, and only causes locking    
     # overhead in the kernel. Turn it off
     write /sys/block/mmcblk0/queue/add_random 0
 
@@ -296,8 +296,8 @@ service wpa_supplicant /system/bin/wpa_supplicant \
     oneshot
 
 service p2p_supplicant /system/bin/wpa_supplicant \
-	-iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -N \
-	-ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf -puse_p2p_group_interface=1
+    -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -N \
+    -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf -puse_p2p_group_interface=1
 #   we will start as root and wpa_supplicant will switch to user wifi
 #   after setting up the capabilities required for WEXT
 #   user wifi
@@ -393,14 +393,14 @@ on property:service.htc_ebdlogd.enable=0
     stop htc_ebdlogd
 
 service cand /system/bin/cand
-	class main
-	user root
+    class main
+    user root
 
 service post_boot /system/bin/sh /system/etc/post_boot.sh
-	class main
-	user root
-	disabled
-	oneshot
+    class main
+    user root
+    disabled
+    oneshot
 
 on property:init.svc.bootanim=stopped
    start post_boot
