@@ -381,10 +381,10 @@ on boot
     setprop system_init.startsurfaceflinger 0
 
     class_start core
-	
-	# maxwen - dirty hack to make sure servicemanager is started before the rest
-   	exec /system/bin/sleep 2
-   	
+    
+    # maxwen - dirty hack to make sure servicemanager is started before the rest
+    exec /system/bin/sleep 2
+    
     class_start main
 
     # maxwen: is done in userinit below
