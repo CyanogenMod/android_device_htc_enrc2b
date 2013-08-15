@@ -12,6 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
@@ -27,8 +28,7 @@ endif
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
-#Recovery
-
+# Recovery
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/sbin/choice_fn:recovery/root/sbin/choice_fn \
     $(LOCAL_PATH)/recovery/sbin/detect_key:recovery/root/sbin/detect_key \
@@ -72,7 +72,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sysctl.conf:system/etc/sysctl.conf \
     $(LOCAL_PATH)/configs/audio_effects.conf:system/etc/audio_effects.conf
 
-  # Prebuilt Alsa configs
+# Prebuilt Alsa configs
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/usr/share/alsa/alsa.conf:system/usr/share/alsa/alsa.conf \
     $(LOCAL_PATH)/prebuilt/usr/share/alsa/cards/aliases.conf:system/usr/share/alsa/cards/aliases.conf \
@@ -97,7 +97,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl
 
-# properitary ones
+# Proprietary input files
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/usr/keylayout/tegra-kbc.kl:system/usr/keylayout/tegra-kbc.kl \
     $(LOCAL_PATH)/prebuilt/usr/keylayout/projector-Keypad.kl:system/usr/keylayout/projector-Keypad.kl \
@@ -105,7 +105,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/usr/idc/tv-touchscreen.idc:system/usr/idc/tv-touchscreen.idc \
     $(LOCAL_PATH)/prebuilt/usr/idc/projector_input.idc:system/usr/idc/projector_input.idc
 
-# properitary ones 
+# Proprietary audio files 
 # This is needed for audio to work
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/lib/hw/audio.primary.tegra.so:system/lib/hw/audio.primary.tegra.so \
@@ -153,7 +153,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/soundimage/Sound_Voip_Original_SPK_AEC.txt:system/etc/soundimage/Sound_Voip_Original_SPK_AEC.txt \
     $(LOCAL_PATH)/prebuilt/soundimage/Sound_Voip_Original_SPK_AEC_XA.txt:system/etc/soundimage/Sound_Voip_Original_SPK_AEC_XA.txt
 
-# audio tfa - actually useless but keep it 
+# Audio tfa - actually useless but keep it 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/tfa/fm.config:system/etc/tfa/fm.config \
     $(LOCAL_PATH)/prebuilt/tfa/fm.eq:system/etc/tfa/fm.eq \
@@ -198,11 +198,11 @@ PRODUCT_PACKAGES += \
     hostapd_cli \
         calibrator
 
-# power
+# Power
 PRODUCT_PACKAGES += \
     power.tegra
         
-#NFC
+# NFC
 PRODUCT_PACKAGES += \
     libnfc \
     libnfc_ndef \
@@ -219,7 +219,7 @@ PRODUCT_PACKAGES += \
     libaudioutils \
     libinvensense_mpl
 
-#Other apps
+# Other apps
 PRODUCT_PACKAGES += \
     Apollo \
     DSPManager \
@@ -251,7 +251,7 @@ PRODUCT_PACKAGES += \
     sdcard \
     libmtp
 
-# for bugmailer
+# For bugmailer
 ifneq ($(TARGET_BUILD_VARIANT),user)
     PRODUCT_PACKAGES += send_bug
     PRODUCT_COPY_FILES += \
@@ -290,7 +290,7 @@ PRODUCT_LOCALES += en_GB xhdpi
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product-if-exists, vendor/htc/enrc2b/enrc2b-vendor.mk)
-$(call inherit-product, $(LOCAL_PATH)/phone-xhdpi-1024-dalvik-heap.mk) ## Needs a specific config for the device to boot - Lloir
+$(call inherit-product, $(LOCAL_PATH)/phone-xhdpi-1024-dalvik-heap.mk) ## Needs a specific config for the device to boot
 
-# common tegra3-HOX+ configs
+# Common tegra3-HOX+ configs
 $(call inherit-product, device/htc/tegra3-common/tegra3.mk)

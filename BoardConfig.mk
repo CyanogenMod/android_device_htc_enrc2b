@@ -12,7 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# inherit from tegra3-common
+
+# Inherit from tegra3-common
 -include device/htc/tegra3-common/BoardConfigCommon.mk
 
 TARGET_BOOTLOADER_BOARD_NAME := enrc2b
@@ -21,7 +22,7 @@ TARGET_BOOTLOADER_BOARD_NAME := enrc2b
 TARGET_GLOBAL_CFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
 
-# Wifi related defines
+# WiFi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 WPA_SUPPLICANT_VERSION      := VER_0_8_X
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
@@ -41,7 +42,7 @@ BOARD_BLUEDROID_VENDOR_CONF := device/htc/enrc2b/bluetooth/vnd_enrc2b.txt
 # HTC ril compatability
 TARGET_PROVIDES_LIBRIL := device/htc/enrc2b/proprietary/lib/libhtc-ril.so
 
-#Audio
+# Audio
 BOARD_USES_GENERIC_AUDIO := false
 
 # USB
@@ -69,10 +70,9 @@ TARGET_KERNEL_SOURCE := kernel/htc/enrc2b
 TARGET_KERNEL_CONFIG := blade_cm10_oc_cpuquiet_defconfig
 #TARGET_KERNEL_CONFIG := cyanogenmod_enrc2b_defconfig
 
-# dont build docs
+# Don't build docs
 DISABLE_DROIDDOC := true
 
 TARGET_PREBUILT_KERNEL := device/htc/enrc2b/recovery/recovery-kernel
 
 BOARD_HAS_NO_SELECT_BUTTON := true
-

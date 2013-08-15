@@ -2,9 +2,8 @@
 # system.prop for enrc2b
 #
 ro.opengles.version = 131072
-#
 
-#Common display settings
+# Common display settings
 ro.sf.lcd_density=320
 ro.hwui.text_cache_width=2048
 ro.hwui.text_cache_height=256
@@ -17,7 +16,7 @@ ro.device.front_cam=1.6MP, 720p
 ro.device.rear_cam=8MP, 1080p
 ro.device.screen_res=720 x 1280 pixels, 4.7"
 
-#Performance and battery tweaks
+# Performance and battery tweaks
 ro.ril.disable.power.collapse=1
 debug.performance.tuning=1
 video.accelerate.hw=1
@@ -26,7 +25,7 @@ persist.sys.ui.hw=true
 ro.media.dec.jpeg.memcap=8000000
 ro.media.enc.jpeg.quality=100
 
-#RIL
+# RIL
 rild.libpath=/system/lib/libhtc_ril.so
 rild.libargs=-e wwan0
 ro.telephony.ril.v3=signalstrength,skipbrokendatacall
@@ -77,11 +76,11 @@ ro.ril.enable.imc.feature=1
 ro.ril.projectname=enrc2b
 ro.ril.stkprof.param=FFFFFFFF7F1D00DFB703021F2200000083000000000040100000000000000000
 
-#Wi-Fi
+# Wi-Fi
 wifi.interface=wlan0
 wifi.supplicant_scan_interval=60
 
-#NFC
+# NFC
 debug.nfc.fw_download=true
 debug.nfc.se=true
 
@@ -93,10 +92,10 @@ ro.product.hwreset = 1
 ro.product.hwreset.timer1 = 5
 ro.product.hwreset.timer2 = 8
 
-#HDMI
+# HDMI
 ro.hdmi.enable=true
 # temporary fix for HDMI output, for videos it works now in correct landscape with this set
 persist.demo.hdmirotation=portrait
 
-#fw.power_user_switcher=true
+# fw.power_user_switcher=true
 service.htc_ebdlogd.enable=1
