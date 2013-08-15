@@ -1,6 +1,6 @@
 [
  {
-   "repository": "tegra3-common",
+   "repository": "android_device_htc_tegra3-common",
    "target_path": "device/htc/tegra3-common"
  },
  {
