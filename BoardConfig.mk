@@ -63,12 +63,8 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB := device/htc/enrc2b/ramdisk/fstab.enrc2b
 RECOVERY_FSTAB_VERSION := 2 
 
-# SE Linux policies
-BOARD_SEPOLICY_DIRS := \
-    device/htc/enrc2b/selinux
+# Device specific SELinux policies
+BOARD_SEPOLICY_DIRS += \
+    device/htc/endeavoru/selinux
 
-BOARD_SEPOLICY_UNION := \
-    file_contexts \
-    file.te \
-    device.te \
-    domain.te
+#BOARD_SEPOLICY_UNION +=
