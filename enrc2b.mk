@@ -49,6 +49,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/calibration:system/etc/calibration \
     $(LOCAL_PATH)/configs/sysctl.conf:system/etc/sysctl.conf
 
+# Fix a bug with Keylayouts
+$(LOCAL_PATH)/../tegra3-common/prebuilt/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl
+
 #Audio packages
 PRODUCT_PACKAGES += \
     libinvensense_mpl
@@ -94,7 +97,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_LOCALES += en_GB xhdpi
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-$(call inherit-product-if-exists, vendor/htc/enrc2b/enrc2b-vendor.mk)
+$(call inherit-product, vendor/htc/enrc2b/enrc2b-vendor.mk)
 
 # common tegra3-HOX+ configs
 $(call inherit-product, device/htc/tegra3-common/tegra3.mk)
