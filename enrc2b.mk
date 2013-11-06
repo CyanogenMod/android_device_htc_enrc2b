@@ -43,8 +43,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/gpsconfig_release.xml:system/etc/gps/gpsconfig_release.xml \
     $(LOCAL_PATH)/configs/htcfs.conf:system/etc/htcfs.conf \
     $(LOCAL_PATH)/configs/hostapd.conf:system/etc/wifi/hostapd.conf \
-    $(LOCAL_PATH)/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    $(LOCAL_PATH)/configs/p2p_supplicant.conf:system/etc/wifi/p2p_supplicant.conf \
+    $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
     $(LOCAL_PATH)/configs/calibration:system/etc/calibration \
     $(LOCAL_PATH)/configs/sysctl.conf:system/etc/sysctl.conf
@@ -77,8 +77,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.execution-mode=int:jit \
     dalvik.vm.lockprof.threshold=500 \
     dalvik.vm.dexopt-flags=m=y \
-    persist.sys.usb.config=mtp,adb \
-    ro.adb.secure=0
+    persist.sys.usb.config=mtp,adb
 
 # Tegra 3 spacific overrides
 PRODUCT_PROPERTY_OVERRIDES += \

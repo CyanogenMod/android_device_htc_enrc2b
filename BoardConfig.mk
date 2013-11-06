@@ -55,6 +55,8 @@ BOARD_KERNEL_PAGESIZE := 2048
 TARGET_KERNEL_SOURCE := kernel/htc/enrc2b
 TARGET_KERNEL_CONFIG := cyanogenmod_enrc2b_defconfig
 
+TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
+
 # dont build docs
 DISABLE_DROIDDOC := true
 #TARGET_PREBUILT_KERNEL := device/htc/enrc2b/recovery/recovery-kernel
