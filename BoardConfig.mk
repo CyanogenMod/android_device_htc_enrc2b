@@ -52,12 +52,12 @@ BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 
 # Try to build the kernel
-#TARGET_KERNEL_SOURCE := kernel/htc/enrc2b
-#TARGET_KERNEL_CONFIG := cyanogenmod_enrc2b_defconfig
-TARGET_PREBUILT_KERNEL := device/htc/enrc2b/kernel
+TARGET_KERNEL_SOURCE := kernel/htc/enrc2b
+TARGET_KERNEL_CONFIG := cyanogenmod_enrc2b_defconfig
 
 # dont build docs
 DISABLE_DROIDDOC := true
+#TARGET_PREBUILT_KERNEL := device/htc/enrc2b/recovery/recovery-kernel
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB := device/htc/enrc2b/ramdisk/fstab.enrc2b

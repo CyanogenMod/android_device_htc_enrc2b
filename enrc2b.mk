@@ -35,17 +35,6 @@ PRODUCT_COPY_FILES := \
     $(LOCAL_PATH)/ramdisk/ueventd.enrc2b.rc:root/ueventd.enrc2b.rc \
     $(LOCAL_PATH)/ramdisk/fstab.enrc2b:root/fstab.enrc2b
 
-# Prebuilt Kernel Modules
-#PRODUCT_COPY_FILES += \
- device/htc/enrc2b/modules/baseband_usb_chr.ko:system/lib/modules/baseband_usb_chr.ko \
- device/htc/enrc2b/modules/baseband-xmm-power2.ko:system/lib/modules/baseband-xmm-power2.ko \
- device/htc/enrc2b/modules/cdc-acm.ko:system/lib/modules/cdc-acm.ko \
- device/htc/enrc2b/modules/bcmdhd.ko:system/lib/modules/bcmdhd.ko \
- device/htc/enrc2b/modules/raw_ip_net.ko:system/lib/modules/raw_ip_net.ko \
- device/htc/enrc2b/modules/tcrypt.ko:system/lib/modules/tcrypt.ko \
- device/htc/enrc2b/modules/dm-crypt.ko:system/lib/modules/dm-crypt.ko \
- device/htc/enrc2b/modules/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko
-
 # Prebuilt GPS/Camera/Wi-Fi configs
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nvcamera_2nd.conf:system/etc/nvcamera_2nd.conf \
