@@ -36,7 +36,7 @@ PRODUCT_COPY_FILES := \
     $(LOCAL_PATH)/ramdisk/fstab.enrc2b:root/fstab.enrc2b
 
 # Prebuilt Kernel Modules
-PRODUCT_COPY_FILES += \
+#PRODUCT_COPY_FILES += \
  device/htc/enrc2b/modules/baseband_usb_chr.ko:system/lib/modules/baseband_usb_chr.ko \
  device/htc/enrc2b/modules/baseband-xmm-power2.ko:system/lib/modules/baseband-xmm-power2.ko \
  device/htc/enrc2b/modules/cdc-acm.ko:system/lib/modules/cdc-acm.ko \
