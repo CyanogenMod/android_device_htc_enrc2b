@@ -34,9 +34,6 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR ?= device/htc/enrc2b/bluetooth
 BOARD_BLUEDROID_VENDOR_CONF := device/htc/enrc2b/bluetooth/vnd_enrc2b.txt
 
-# HTC ril compatability
-#TARGET_PROVIDES_LIBRIL := vendor/htc/enrc2b/proprietary/lib/libril.so
-
 # Kernel / Ramdisk
 TARGET_PROVIDES_INIT_TARGET_RC := true
 TARGET_USERIMAGES_USE_EXT4 := true

@@ -30,6 +30,7 @@ ro.media.enc.jpeg.quality=100
 ro.telephony.ril_class=HTCTegra3RIL
 rild.libpath=/system/lib/libhtc_ril.so
 rild.libargs=-e wwan0
+ro.telephony.ril.v3=signalstrength,skipbrokendatacall
 modem.power.device=/sys/class/gpio/gpio32/value,0,1
 ro.ril.devicename=/dev/ttyACM1
 modem.powercontrol=disabled
@@ -93,5 +94,13 @@ ro.product.hwreset = 1
 ro.product.hwreset.timer1 = 5
 ro.product.hwreset.timer2 = 8
 
+#HDMI
+ro.hdmi.enable=true
+# temporary fix for HDMI output, for videos it works now in correct landscape with this set
+persist.demo.hdmirotation=portrait
+
 #fw.power_user_switcher=true
 service.htc_ebdlogd.enable=1
+
+# Enable legacy screenshot code for older Tegra 3 EGL libs
+ro.bq.gpu_to_cpu_unsupported=1
