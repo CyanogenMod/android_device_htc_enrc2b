@@ -17,6 +17,34 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
+# Set default USB interface
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.usb.config=mass_storage,adb
+
+# Don't store dalvik on /cache, it gets annoying when /cache is wiped
+# by us to enable booting into recovery after flashing boot.img
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dexopt-data-only=1
+
+# Increase UMS speed
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vold.umsdirtyratio=50
+
+# Enable legacy screenshot code for older Tegra 3 EGL libs
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.bq.gpu_to_cpu_unsupported=1
+
+# Override phone-xhdpi-1024-dalvik-heap.mk setting
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.heapgrowthlimit=96m
+
+# force gpu rendering(2d drawing) [Nvidia setting - libhtc-opt2.so]
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.ui.hw=true
+
+# we have enough storage space to hold precise GC data
+PRODUCT_TAGS += dalvik.gc.type-precise
+
 #Recovery
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/sbin/choice_fn:recovery/root/sbin/choice_fn \
@@ -70,28 +98,14 @@ PRODUCT_PACKAGES += \
 # Power
 PRODUCT_PACKAGES += \
     power.tegra
-        
+
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.locationfeatures=1 \
     ro.setupwizard.enable_bypass=1 \
     dalvik.vm.execution-mode=int:jit \
     dalvik.vm.lockprof.threshold=500 \
     dalvik.vm.dexopt-flags=m=y \
-    persist.sys.usb.config=mtp,adb \
-    ro.adb.secure=0
-
-# Tegra 3 spacific overrides
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.tegra.nvmmlite=1 \
-    ro.vendor.extension_library=/system/lib/libhtc-opt2.so \
-    tf.enable=y
-
-# We have enough storage space to hold precise GC data
-PRODUCT_TAGS += dalvik.gc.type-precise
-
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-
-PRODUCT_LOCALES += en_GB xhdpi
+    persist.sys.usb.config=mtp,adb
 
 $(call inherit-product, vendor/htc/enrc2b/enrc2b-vendor.mk)
 

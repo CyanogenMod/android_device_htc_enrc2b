@@ -9,10 +9,6 @@ on init
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage/emulated 0555 root root
-    
-    # TEMP MUST REMOVE WHEN A PROPER FIX HAS BEEN FOUND
-
-    mkdir /cache/dalvik-cache 777 system system
 
     export EXTERNAL_STORAGE /storage/emulated/legacy
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
@@ -155,10 +151,10 @@ on boot
 
 # Load modules while booting 
     insmod /system/lib/modules/bcmdhd.ko
-    #insmod /lib/modules/baseband-xmm-power2.ko
-    #insmod /lib/modules/baseband_usb_chr.ko
-    #insmod /lib/modules/cdc-acm.ko
-    #insmod /lib/modules/raw_ip_net.ko
+    insmod /lib/modules/baseband-xmm-power2.ko
+    insmod /lib/modules/baseband_usb_chr.ko
+    insmod /lib/modules/cdc-acm.ko
+    insmod /lib/modules/raw_ip_net.ko
 
 # bluetooth
     chown bluetooth net_bt_stack /dev/ttyHS2
