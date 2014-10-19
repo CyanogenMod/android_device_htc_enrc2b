@@ -8,7 +8,7 @@ on init
     # See storage config details at http://source.android.com/tech/storage/
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage/emulated 0555 root root
-    
+
     export EXTERNAL_STORAGE /storage/emulated/legacy
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
     export EMULATED_STORAGE_TARGET /storage/emulated
@@ -24,7 +24,13 @@ on init
     symlink /storage/sdcard0 /mnt/usbdisk
 
     mkdir /mnt/usb 0775 system system
-    
+
+on early-boot
+  write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
+  write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor interactive
+  write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor interactive
+  write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor interactive
+
 on fs
     mkdir /rca 0775 radio radio
     mkdir /rfs 0755 radio radio
@@ -49,6 +55,10 @@ on post-fs-data
     setprop vold.post_fs_data_done 1
 
 on boot
+    write /proc/sys/vm/highmem_is_dirtyable 1
+    write /proc/sys/vm/lowmem_reserve_ratio 16\ 16
+    write /proc/sys/vm/min_free_kbytes 4096
+
     # Setup paths used for socket communication with the dhcp daemon(dhcpd)
     mkdir /data/nvcam 0777 system system
     mkdir /data/misc/wifi 0777 wifi wifi
@@ -82,11 +92,6 @@ on boot
     chown radio radio /sys/class/power_supply/battery/phone_call
     chmod 0660 /sys/class/power_supply/battery/phone_call
 
-    # Configure and enable KSM
-    write /sys/kernel/mm/ksm/pages_to_scan 100
-    write /sys/kernel/mm/ksm/sleep_millisecs 500
-    write /sys/kernel/mm/ksm/run 1
-
 # For Flashlight Restriction
     chown radio system /sys/camera_led_status/led_ril_status
     chown system system /sys/camera_led_status/led_wimax_status
@@ -100,11 +105,11 @@ on boot
 
 # Wifi: Disable the IPv6 of p2p0 interface
     write /proc/sys/net/ipv6/conf/p2p0/disable_ipv6 1
-    
+
     chown system system /sys/class/android_usb/android0/f_rndis/ethaddr
     chmod 0660 /sys/class/android_usb/android0/f_rndis/ethaddr
 
-# Load modules while booting 
+# Load modules while booting
     insmod /system/lib/modules/bcmdhd.ko
     #insmod /lib/modules/baseband-xmm-power2.ko
     #insmod /lib/modules/baseband_usb_chr.ko
@@ -129,11 +134,11 @@ on boot
     # For nvidia platform specific a2dp tuning support
     chown bluetooth net_bt_stack /sys/devices/platform/tegra_uart_brcm.2/a2dp_tuning
     chmod 666 /sys/devices/platform/tegra_uart_brcm.2/a2dp_tuning
-    
+
     # For nvidia platform specific opp tuning support
     chown bluetooth net_bt_stack /sys/devices/platform/tegra_uart_brcm.2/opp_tuning
     chmod 666 /sys/devices/platform/tegra_uart_brcm.2/opp_tuning
-    
+
 # GPS deamon
     chmod 0774 /sys/class/gpio/gpio223/value
     chown gps system /sys/class/gpio/gpio223/value
@@ -148,7 +153,7 @@ on boot
     chown gps system /dev/ttyHS4
     chmod 0777 /data/sph.cfg
     chmod 0777 /system/bin/glgps
-    chmod 0777 /ststem/bin/gpslogd
+    chmod 0777 /system/bin/gpslogd
 
 #NFC
     setprop ro.nfc.port "I2C"
@@ -217,19 +222,46 @@ on boot
     write /sys/module/cpu_tegra3/parameters/no_lp 0
     #write /sys/module/tegra3_emc/parameters/emc_enable 0
     write /sys/module/cpuidle/parameters/lp2_in_idle 1
-    
+
+# Power management settings
+    chown system system /sys/module/cpu_tegra3/parameters/no_lp
+    write /sys/module/cpu_tegra3/parameters/no_lp 0
+    #write /sys/module/tegra3_emc/parameters/emc_enable 0
+    #write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 1000000
+    write /sys/devices/system/cpu/cpufreq/interactive/boost_factor 2
+    write /sys/devices/system/cpu/cpufreq/interactive/input_boost 1
+    write /sys/devices/system/cpu/cpufreq/interactive/sustain_load 80
+    write /sys/module/cpu_tegra3/parameters/auto_hotplug 1
+    #write /sys/module/cpuidle_t3/parameters/lp2_0_in_idle 0
+    write /sys/module/cpuidle/parameters/lp2_in_idle 0
+
+# Setup CPU for "performance" mode
+    setprop sys.cpu.mode 2
+
+# Interactive governor settings
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/boost_factor
+    chmod 0660 /sys/devices/system/cpu/cpufreq/interactive/boost_factor
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/go_maxspeed_load
+    chmod 0660 /sys/devices/system/cpu/cpufreq/interactive/go_maxspeed_load
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/io_is_busy
+    chmod 0660 /sys/devices/system/cpu/cpufreq/interactive/io_is_busy
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/max_boost
+    chmod 0660 /sys/devices/system/cpu/cpufreq/interactive/max_boost
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/sustain_load
+    chmod 0660 /sys/devices/system/cpu/cpufreq/interactive/sustain_load
+
     chown system /sys/htc/power_save
     chgrp system /sys/htc/power_save
-    
+
     chown system /sys/htc/media_boost_freq
     chgrp system /sys/htc/media_boost_freq
-    
+
     # Increase read ahead size of mmc block devices from default(128) to 1MB
     # Reduces power comsuption during video playback from sdcards
     write /sys/block/mmcblk0/queue/read_ahead_kb 1024
     write /sys/block/mmcblk0/bdi/read_ahead_kb 1024
-    
-    # Flash storage isn't a good entropy source, and only causes locking    
+
+    # Flash storage isn't a good entropy source, and only causes locking
     # overhead in the kernel. Turn it off
     write /sys/block/mmcblk0/queue/add_random 0
 
@@ -240,7 +272,6 @@ on boot
     mkdir /sdcard/download
     copy /etc/DxDrmConfig_Server.txt /data/DxDrm/DxDrmConfig_Server.txt
 
-    # Restorecon
     restorecon /sys/devices/system/cpu
     restorecon /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
     restorecon /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
@@ -262,12 +293,12 @@ on boot
     mkdir /data/audio
     chmod 755 /data/audio
     chown media audio /data/audio
-    
+
 service pollyd /system/bin/pollyd
     class main
     user root
     group root
-    
+
 # bugreport is triggered by the VOLUME-DOWN and VOLUME-UP keys/
 service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
     disabled
@@ -450,9 +481,9 @@ on property:ro.hdmi.enable=true
 
     chown system system /sys/class/leds/button-backlight/currents
     chown system system /sys/class/leds/button-backlight/blink
-    chown system system /sys/class/leds/button-backlight/off_timer    
-    chown system system /sys/class/leds/button-backlight/slow_blink_brightness_limit    
-            
+    chown system system /sys/class/leds/button-backlight/off_timer
+    chown system system /sys/class/leds/button-backlight/slow_blink_brightness_limit
+
 service choice_fn /sbin/choice_fn
     oneshot
 
