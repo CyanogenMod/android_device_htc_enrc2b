@@ -15,7 +15,9 @@
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+DEVICE_PACKAGE_OVERLAYS += device/htc/tegra3-common/overlay
+# enrc2b specific overlay for power and storage
+DEVICE_PACKAGE_OVERLAYS += device/htc/enrc2b
 
 #Recovery
 PRODUCT_COPY_FILES += \
@@ -29,9 +31,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES := \
     $(LOCAL_PATH)/ramdisk/init.enrc2b.rc:root/init.enrc2b.rc \
     $(LOCAL_PATH)/ramdisk/init.usb.rc:root/init.usb.rc \
-    $(LOCAL_PATH)/ramdisk/init.trace.rc:root/init.trace.rc \
-    $(LOCAL_PATH)/ramdisk/init.scripts.sh:root/init.scripts.sh \
-    $(LOCAL_PATH)/ramdisk/ueventd.rc:root/ueventd.rc \
     $(LOCAL_PATH)/ramdisk/ueventd.enrc2b.rc:root/ueventd.enrc2b.rc \
     $(LOCAL_PATH)/ramdisk/fstab.enrc2b:root/fstab.enrc2b
 
@@ -62,7 +61,7 @@ PRODUCT_PACKAGES += \
     sdcard \
     libmtp
 
-# Hostapd   
+# Hostapd
 PRODUCT_PACKAGES += \
     hostapd_cli \
     calibrator
@@ -70,28 +69,11 @@ PRODUCT_PACKAGES += \
 #NFC
 PRODUCT_PACKAGES += \
     libnfc_ndef
-        
+
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.locationfeatures=1 \
     ro.setupwizard.enable_bypass=1 \
-    dalvik.vm.execution-mode=int:jit \
-    dalvik.vm.lockprof.threshold=500 \
-    dalvik.vm.dexopt-flags=m=y \
     persist.sys.usb.config=mtp,adb
-
-#Performance tuning (http://source.android.com/devices/tuning.html)
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.hwui.disable_scissor_opt=true \
-    ro.hwui.texture_cache_size=32 \
-    ro.hwui.layer_cache_size=24
-
-# Tegra 3 spacific overrides
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.tegra.nvmmlite=1 \
-    tf.enable=y
-
-# We have enough storage space to hold precise GC data
-PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
