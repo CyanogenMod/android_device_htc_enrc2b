@@ -53,13 +53,10 @@ BOARD_KERNEL_PAGESIZE := 2048
 
 # Try to build the kernel
 TARGET_KERNEL_SOURCE := kernel/htc/enrc2b
-TARGET_KERNEL_CONFIG := cm_enrc2b_defconfig
+TARGET_KERNEL_CONFIG := enrc2b_defconfig
 
 # dont build docs
 DISABLE_DROIDDOC := true
-
-# Charge mode
-BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
 
 # Recovery
 TARGET_PREBUILT_RECOVERY_KERNEL := device/htc/enrc2b/recovery/recovery_kernel
@@ -75,27 +72,27 @@ BOARD_SEPOLICY_DIRS += \
 		device/htc/enrc2b/sepolicy
 
 BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    property_contexts \
-    service_contexts \
-    drmserver.te \
-	bootanim.te \
-	drmserver.te \
-    file.te \
-    gpsd.te \
-	hdmid.te \
-	healthd.te \
-	htcbatt.te \
-    init.te \
-	keystore.te \
-    lmkd.te \
-    mediaserver.te \
-    property.te \
-    recovery.te \
-    rild.te \
-    sensors_config.te \
-    surfaceflinger.te \
-    system_app.te \
-    system_server.te \
-	ueventd.te \
-	zygote.te
+		    file_contexts \
+		    property_contexts \
+		    service_contexts \
+		    drmserver.te \
+			bootanim.te \
+			drmserver.te \
+		    file.te \
+		    gpsd.te \
+			hdmid.te \
+			healthd.te \
+			htcbatt.te \
+		    init.te \
+			keystore.te \
+		    lmkd.te \
+		    mediaserver.te \
+		    property.te \
+		    recovery.te \
+		    rild.te \
+		    sensors_config.te \
+		    surfaceflinger.te \
+		    system_app.te \
+		    system_server.te \
+			ueventd.te \
+			zygote.te
