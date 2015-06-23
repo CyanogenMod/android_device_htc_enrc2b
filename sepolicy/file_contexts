@@ -1,23 +1,26 @@
 # Enrc2b device specific
 
+#Bluetooth
+/sys/devices/platform/bcm4330_rfkill/rfkill/rfkill0/state   --  u:object_r:sysfs_bluetooth_writable:s0
+/sys/devices/platform/bcm4330_rfkill/rfkill/rfkill0/type    --  u:object_r:sysfs_bluetooth_writable:s0
+
+#Gps
+/system/bin/glgps              -- u:object_r:gpsd_exec:s0
+/dev/socket/rild-agps			  u:object_r:gps_socket:s0
+/dev/ttyHS4                       u:object_r:gps_device:s0
+
+#Battery
+/dev/tps80032_gauge				  u:object_r:htcbatt_device:s0
+
+#Ril
 /dev/ttyACM0                      u:object_r:radio_device:s0
-/dev/timerirq                     u:object_r:sensors_device:s0
+/dev/ttyACM1                      u:object_r:baseband_log_device:s0
 
-/dev/ov8838                       u:object_r:camera_device:s0
-
+#Sensors+Camera
 /data/calibration(/.*)?           u:object_r:sensors_data_file:s0
 /data/lightsensor(/.*)?           u:object_r:sensors_data_file:s0
 /data/sensors(/.*)?               u:object_r:sensors_data_file:s0
 /data/nvcam(/.*)?				  u:object_r:camera_data_file:s0
-
-/system/bin/glgps              -- u:object_r:gpsd_exec:s0
+/dev/timerirq                     u:object_r:sensors_device:s0
+/dev/ov8838                       u:object_r:camera_device:s0
 /system/bin/sensorservice      -- u:object_r:sensors_config_exec:s0
-
-/sys/devices/platform/bcm4330_rfkill/rfkill/rfkill0/state   --  u:object_r:sysfs_bluetooth_writable:s0
-/sys/devices/platform/bcm4330_rfkill/rfkill/rfkill0/type    --  u:object_r:sysfs_bluetooth_writable:s0
-
-/sys/devices/platform/htc_battery(/.*)?				--	u:object_r:sysfs_writable:s0
-
-
-/sys/class/graphics/fb0/device/smartdimmer/enable        u:object_r:sysfs_smartdimmer:s0
-

@@ -1,3 +1,2 @@
-allow zygote cpuctl_device:dir search;
-allow zygote self:capability sys_nice;
-
+allow zygote cpuctl_device : dir search ;
+allow zygote zygote : capability { chown dac_override fowner setgid setuid setpcap sys_admin sys_nice } ;

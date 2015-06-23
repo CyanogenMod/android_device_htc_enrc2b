@@ -1,0 +1,2 @@
+type bdaddwriter, domain;
+file_type_auto_trans(bdaddwriter, system_data_file, mac_data_file)

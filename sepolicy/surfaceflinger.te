@@ -1,9 +1,5 @@
-# should be more specific to only target /data/data/com.nvidia.cap
-allow surfaceflinger system_data_file:sock_file create_file_perms;
-allow surfaceflinger system_data_file:dir rw_dir_perms;
-
-# allow surfaceflinger to read smartdimmer status
-allow surfaceflinger sysfs_smartdimmer:file r_file_perms;
-
-allow surfaceflinger cpuctl_device:dir search;
+allow surfaceflinger cpuctl_device : dir search ;
+allow domain system_data_file : dir { getattr search } ;
+allow surfaceflinger system_data_file : dir { ioctl read write getattr add_name remove_name search open } ;
+allow surfaceflinger system_data_file : sock_file { ioctl read write create getattr setattr lock append unlink link rename open } ;
 allow surfaceflinger ctl_default_prop:property_service set;

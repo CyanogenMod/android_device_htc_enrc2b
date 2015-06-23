@@ -1,3 +1,5 @@
+allow system_server { knv_device }:chr_file rw_file_perms;
+allow system_server elan_ip_device:chr_file rw_file_perms;
 allow system_server sysfs_devices_system_cpu:file w_file_perms;
 allow system_server sysfs_devices_system_cpu:dir r_dir_perms;
 allow system_server diag_device:chr_file rw_file_perms;
@@ -12,4 +14,11 @@ allow system_server cache_file:file execute;
 # Allow fuse
 allow system_server fuse:dir search;
 
-allow system_server gps_data_file:fifo_file create;
+# Access .gps.interface.pipe.to_gpsd.
+allow system_server gps_data_file:dir search;
+allow system_server gps_data_file:fifo_file { setattr rw_file_perms };
+
+# Allow htcbatt
+#allow system_server htcbatt_device:chr_file { ioctl read write getattr lock append open };
+
+allow system_server cache_file:file execute;
