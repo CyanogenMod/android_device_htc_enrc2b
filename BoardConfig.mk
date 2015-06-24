@@ -70,6 +70,17 @@ RECOVERY_FSTAB_VERSION := 2
 
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 
+#Dexopt, the X+ has more than enough space for this
+ifneq ($(TARGET_TRANSPARENT_COMPRESSION_METHOD),)
+ifeq ($(HOST_OS),linux)
+  ifeq ($(TARGET_BUILD_VARIANT),user)
+    ifeq ($(WITH_DEXPREOPT),)
+      WITH_DEXPREOPT := true
+    endif
+ endif
+endif
+endif
+			
 # Device specific SELinux policies
 BOARD_SEPOLICY_DIRS += \
 		device/htc/enrc2b/sepolicy
