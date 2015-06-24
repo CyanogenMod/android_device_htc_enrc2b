@@ -166,9 +166,6 @@ on boot
     # for nvidia platform specific a2dp tuning support
     chown media media /sys/devices/platform/tegra_uart.2/a2dp_tuning
 
-    # GPS
-    setprop ro.gps.supl.supported true
-
     # NFC
     setprop ro.nfc.port "I2C"
     chmod 0660 /dev/pn544
@@ -291,6 +288,13 @@ service setup_fs /system/bin/setup_fs \
     user root
     group root
     oneshot
+    
+# Start GPS daemon
+service gps-daemon /system/bin/glgps -c /system/etc/gps/gpsconfig.xml
+    socket gps seqpacket 0660 gps system
+    class main
+    user gps
+    group system sdcard_rw inet radio sdcard_r
 
 service gsm0710mux /system/bin/gsm0710muxd -s /dev/ttyACM0 -v 5 -n 8 -m basic
     class main
