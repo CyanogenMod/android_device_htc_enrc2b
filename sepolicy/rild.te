@@ -6,5 +6,4 @@ allow rild radio_device:chr_file setattr;
 allow rild self:capability fsetid;
 
 # Talk to agpsd
-allow rild gps_socket:sock_file { write };
-allow rild gpsd:unix_stream_socket { connectto };
+allow gpsd rild:unix_stream_socket { connectto };

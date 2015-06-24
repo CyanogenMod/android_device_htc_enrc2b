@@ -5,7 +5,7 @@
 /sys/devices/platform/bcm4330_rfkill/rfkill/rfkill0/type    --  u:object_r:sysfs_bluetooth_writable:s0
 
 #Gps
-/system/bin/glgps              -- u:object_r:gpsd_exec:s0
+/system/bin/glgps                 u:object_r:gpsd_exec:s0
 /dev/socket/rild-agps			  u:object_r:gps_socket:s0
 /dev/ttyHS4                       u:object_r:gps_device:s0
 

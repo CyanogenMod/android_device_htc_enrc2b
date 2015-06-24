@@ -1,2 +1,5 @@
 allow gpsd self:process execmem;
 allow gpsd self:capability dac_override;
+
+#Allow writing to pts
+allow gpsd devpts:chr_file rw_file_perms;
