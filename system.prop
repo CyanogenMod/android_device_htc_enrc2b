@@ -9,13 +9,6 @@ ro.sf.lcd_density=320
 ro.hwui.text_cache_width=2048
 ro.hwui.text_cache_height=256
 
-# Addidional info for Settings/About/Hardware
-ro.device.chipset=nVidia Tegra AP37
-ro.device.cpu=1.7GHz quad-core
-ro.device.gpu=ULP GeForce
-ro.device.front_cam=1.6MP, 720p
-ro.device.rear_cam=8MP, 1080p
-ro.device.screen_res=720 x 1280 pixels, 4.7"
 
 #Performance and battery tweaks
 ro.ril.disable.power.collapse=1
@@ -85,10 +78,6 @@ ro.telephony.default_network=3
 #Wi-Fi
 wifi.interface=wlan0
 wifi.supplicant_scan_interval=60
-
-#NFC
-debug.nfc.fw_download=true
-debug.nfc.se=true
 
 # For usb storage
 ro.usb_host = 1
