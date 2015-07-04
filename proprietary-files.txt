@@ -49,11 +49,8 @@ lib/egl/libGLESv1_CM_tegra_impl.so
 lib/egl/libGLESv1_CM_tegra.so
 lib/egl/libGLESv2_tegra_impl.so
 lib/egl/libGLESv2_tegra.so
-lib/hw/audio.primary.tegra.so
 lib/hw/gps.tegra.so
-lib/hw/keystore.default.so
 lib/hw/local_time.default.so
-lib/hw/nfc.enrc2b.so
 lib/hw/sensors.enrc2b.so
 lib/hw/vendor-camera.tegra.so
 lib/libardrv_dynamic.so
@@ -64,6 +61,8 @@ lib/libcameraasd.so
 lib/libcameraface.so
 lib/libcamerapp.so
 lib/libcgdrv.so
+lib/libcrypto.so
+lib/libcutils.so
 lib/libdrmdecrypt.so
 lib/libdumppcm.so
 lib/libhtccamera.so
@@ -73,6 +72,8 @@ lib/libhtc_rilhook.so
 lib/libhtc_ril.so
 lib/libhtcsunny2engine.so
 lib/libhtcsurfaces.so
+lib/libkeystore_client.so
+lib/liblog.so
 lib/libmllite.so
 lib/libmlplatform.so
 lib/libmpl_jni.so
@@ -213,3 +214,11 @@ etc/tfa/voice.speaker
 etc/AIC3008_REG_DualMic.csv
 etc/AIC3008_REG_DualMic_XA.csv
 etc/DSP_number.txt
+
+# From Endeavoru
+lib/hw/audio.primary.tegra.so
+lib/hw/audio_policy.tegra.so
+lib/libasound.so
+
+# From grouper
+etc/firmware/libpn544_fw.so
