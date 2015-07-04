@@ -55,6 +55,9 @@ BOARD_KERNEL_PAGESIZE := 2048
 TARGET_KERNEL_SOURCE := kernel/htc/enrc2b
 TARGET_KERNEL_CONFIG := cm_enrc2b_defconfig
 
+# Keymaster
+BOARD_HAS_TF_CRYPTO_SST := true
+
 # dont build docs
 DISABLE_DROIDDOC := true
 

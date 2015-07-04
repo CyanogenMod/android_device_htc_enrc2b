@@ -74,6 +74,9 @@ PRODUCT_PACKAGES += \
     e2fsck \
     setup_fs
 
+PRODUCT_PACKAGES += \
+    keystore.enrc2b
+
 # Tegra 3 specific overrides
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.tegra.nvmmlite=1 \
