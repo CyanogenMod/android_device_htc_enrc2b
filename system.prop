@@ -6,6 +6,17 @@ ro.opengles.version = 131072
 
 #Common display settings
 ro.sf.lcd_density=320
+ro.hwui.text_cache_width=2048
+ro.hwui.text_cache_height=256
+
+#Performance and battery tweaks
+ro.ril.disable.power.collapse=1
+debug.performance.tuning=1
+video.accelerate.hw=1
+debug.sf.hw=1
+persist.sys.ui.hw=true
+ro.media.dec.jpeg.memcap=8000000
+ro.media.enc.jpeg.quality=100
 
 # RIL
 rild.libpath=/system/lib/libhtc_ril.so
@@ -67,6 +78,10 @@ ro.telephony.default_network=3
 ro.product.hwreset = 1
 ro.product.hwreset.timer1 = 5
 ro.product.hwreset.timer2 = 8
+
+#NFC
+debug.nfc.fw_download=true
+debug.nfc.se=true
 
 #HDMI
 ro.hdmi.enable=true
