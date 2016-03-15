@@ -43,11 +43,15 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/gpsconfig_release.xml:system/etc/gps/gpsconfig_release.xml \
     $(LOCAL_PATH)/configs/htcfs.conf:system/etc/htcfs.conf \
     $(LOCAL_PATH)/configs/hostapd.conf:system/etc/wifi/hostapd.conf \
-    $(LOCAL_PATH)/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    $(LOCAL_PATH)/configs/p2p_supplicant.conf:system/etc/wifi/p2p_supplicant.conf \
+    $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
     $(LOCAL_PATH)/configs/calibration:system/etc/calibration \
     $(LOCAL_PATH)/configs/sysctl.conf:system/etc/sysctl.conf
+
+# BT
+PRODUCT_COPY_FILES += \
+$(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
 #Audio packages
 PRODUCT_PACKAGES += \
@@ -66,10 +70,6 @@ PRODUCT_PACKAGES += \
 #NFC
 PRODUCT_PACKAGES += \
     libnfc_ndef
-
-# Power
-PRODUCT_PACKAGES += \
-    power.tegra
         
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.locationfeatures=1 \
@@ -77,13 +77,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.execution-mode=int:jit \
     dalvik.vm.lockprof.threshold=500 \
     dalvik.vm.dexopt-flags=m=y \
-    persist.sys.usb.config=mtp,adb \
-    ro.adb.secure=0
+    persist.sys.usb.config=mtp,adb
+
+#Performance tuning (http://source.android.com/devices/tuning.html)
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hwui.disable_scissor_opt=true \
+    ro.hwui.texture_cache_size=32 \
+    ro.hwui.layer_cache_size=24
 
 # Tegra 3 spacific overrides
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.tegra.nvmmlite=1 \
-    ro.vendor.extension_library=/system/lib/libhtc-opt2.so \
     tf.enable=y
 
 # We have enough storage space to hold precise GC data

@@ -31,8 +31,11 @@ WIFI_DRIVER_FW_PATH_P2P     := "/system/etc/firmware/fw_bcm4334_p2p.bin"
 
 # BT
 BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR ?= device/htc/enrc2b/bluetooth
 BOARD_BLUEDROID_VENDOR_CONF := device/htc/enrc2b/bluetooth/vnd_enrc2b.txt
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR ?= device/htc/enrc2b/bluetooth
+
+# HTC ril compatability
+TARGET_PROVIDES_LIBRIL := device/htc/enrc2b/proprietary/lib/libhtc-ril.so
 
 # Kernel / Ramdisk
 TARGET_PROVIDES_INIT_TARGET_RC := true
@@ -51,17 +54,15 @@ BOARD_KERNEL_PAGESIZE := 2048
 # Try to build the kernel
 TARGET_KERNEL_SOURCE := kernel/htc/enrc2b
 TARGET_KERNEL_CONFIG := cyanogenmod_enrc2b_defconfig
-#TARGET_PREBUILT_KERNEL := device/htc/enrc2b/kernel
 
 # dont build docs
 DISABLE_DROIDDOC := true
 
+# Recovery
+TARGET_PREBUILT_RECOVERY_KERNEL := device/htc/enrc2b/recovery/recovery_kernel
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB := device/htc/enrc2b/ramdisk/fstab.enrc2b
 RECOVERY_FSTAB_VERSION := 2 
 
-# Device specific SELinux policies
-BOARD_SEPOLICY_DIRS += \
-    device/htc/enrc2b/selinux
-
-#BOARD_SEPOLICY_UNION +=
+TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true

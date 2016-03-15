@@ -27,7 +27,6 @@ ro.media.dec.jpeg.memcap=8000000
 ro.media.enc.jpeg.quality=100
 
 # RIL
-ro.telephony.ril_class=HTCTegra3RIL
 rild.libpath=/system/lib/libhtc_ril.so
 rild.libargs=-e wwan0
 ro.telephony.ril.v3=signalstrength,skipbrokendatacall
@@ -77,6 +76,10 @@ ro.ril.hspa.mac.ehs=1
 ro.ril.enable.imc.feature=1
 ro.ril.projectname=enrc2b
 ro.ril.stkprof.param=FFFFFFFF7F1D00DFB703021F2200000083000000000040100000000000000000
+
+# Disable LTE
+telephony.lteOnGsmDevice=0
+ro.telephony.default_network=3
 
 #Wi-Fi
 wifi.interface=wlan0

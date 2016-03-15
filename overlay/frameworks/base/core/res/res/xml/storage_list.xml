@@ -41,4 +41,9 @@
         android:primary="true"
         android:allowMassStorage="false"
         android:removable="false" />
+
+    <storage android:mountPoint="/storage/usbdisk"
+        android:storageDescription="@string/storage_usb"
+        android:primary="false"
+        android:removable="true" />
 </StorageList>
