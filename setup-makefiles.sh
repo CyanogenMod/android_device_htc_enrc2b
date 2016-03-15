@@ -40,6 +40,10 @@ for FILE in `egrep -v '(^#|^$)' proprietary-files.txt`; do
   if [ $COUNT = "0" ]; then
     LINEEND=""
   fi
+  if [ ! -f ../../../$OUTDIR/proprietary/$FILE ]; then
+      echo "remote object /system/$FILE not found, skipping"
+      continue
+  fi
   echo "  $OUTDIR/proprietary/$FILE:system/$FILE$LINEEND" >> $MAKEFILE
 done
 
